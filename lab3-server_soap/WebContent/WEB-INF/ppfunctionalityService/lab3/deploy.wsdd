@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ppfunctionalityService WSDL service -->
+
+  <service name="ppfunctionality" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://lab3"/>
+      <parameter name="wsdlServiceElement" value="ppfunctionalityService"/>
+      <parameter name="schemaQualified" value="http://lab3"/>
+      <parameter name="wsdlServicePort" value="ppfunctionality"/>
+      <parameter name="className" value="lab3.ppfunctionality"/>
+      <parameter name="wsdlPortType" value="ppfunctionality"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://lab3" xmlns:retNS="http://lab3" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="addtobid" qname="operNS:addtobid" returnQName="retNS:addtobidReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://lab3" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user" type="tns:string"/>
+        <parameter xmlns:pns="http://lab3" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:pid" type="tns:int"/>
+        <parameter xmlns:pns="http://lab3" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:quantity" type="tns:int"/>
+        <parameter xmlns:pns="http://lab3" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:bidamt" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://lab3" xmlns:retNS="http://lab3" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="addtocart" qname="operNS:addtocart" returnQName="retNS:addtocartReturn" returnType="rtns:boolean" soapAction="">
+        <parameter xmlns:pns="http://lab3" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user" type="tns:string"/>
+        <parameter xmlns:pns="http://lab3" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:title" type="tns:string"/>
+        <parameter xmlns:pns="http://lab3" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:itemdesc" type="tns:string"/>
+        <parameter xmlns:pns="http://lab3" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:pid" type="tns:int"/>
+        <parameter xmlns:pns="http://lab3" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:rate" type="tns:int"/>
+        <parameter xmlns:pns="http://lab3" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:quantity" type="tns:int"/>
+      </operation>
+      <operation xmlns:operNS="http://lab3" xmlns:retNS="http://lab3" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="getcart" qname="operNS:getcart" returnQName="retNS:getcartReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://lab3" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:pid" type="tns:int"/>
+      </operation>
+      <parameter name="allowedMethods" value="addtocart getcart addtobid"/>
+
+  </service>
+</deployment>

@@ -1,0 +1,202 @@
+<ns1:deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java" xmlns:ns1="http://xml.apache.org/axis/wsdd/">
+ <ns1:globalConfiguration>
+  <ns1:parameter name="sendMultiRefs" value="true"/>
+  <ns1:parameter name="disablePrettyXML" value="true"/>
+  <ns1:parameter name="adminPassword" value="admin"/>
+  <ns1:parameter name="attachments.Directory" value="E:\273workspace\SOAP_lab3\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\lab3\WEB-INF\attachments"/>
+  <ns1:parameter name="dotNetSoapEncFix" value="true"/>
+  <ns1:parameter name="enableNamespacePrefixOptimization" value="false"/>
+  <ns1:parameter name="sendXMLDeclaration" value="true"/>
+  <ns1:parameter name="attachments.implementation" value="org.apache.axis.attachments.AttachmentsImpl"/>
+  <ns1:parameter name="sendXsiTypes" value="true"/>
+  <ns1:requestFlow>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="session"/>
+   </ns1:handler>
+   <ns1:handler type="java:org.apache.axis.handlers.JWSHandler">
+    <ns1:parameter name="scope" value="request"/>
+    <ns1:parameter name="extension" value=".jwr"/>
+   </ns1:handler>
+  </ns1:requestFlow>
+ </ns1:globalConfiguration>
+ <ns1:handler name="URLMapper" type="java:org.apache.axis.handlers.http.URLMapper"/>
+ <ns1:handler name="Authenticate" type="java:org.apache.axis.handlers.SimpleAuthenticationHandler"/>
+ <ns1:handler name="LocalResponder" type="java:org.apache.axis.transport.local.LocalResponder"/>
+ <ns1:service name="userlogs" provider="java:RPC" style="wrapped" use="literal">
+  <ns2:operation name="userlog" qname="ns1:userlog" returnQName="ns1:userlogReturn" returnType="xsd:boolean" soapAction="" xmlns:ns1="http://lab3" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:ns2="http://xml.apache.org/axis/wsdd/">
+   <ns2:parameter qname="ns1:user" type="xsd:string"/>
+   <ns2:parameter qname="ns1:pid" type="xsd:double"/>
+  </ns2:operation>
+  <ns1:parameter name="allowedMethods" value="userlog"/>
+  <ns1:parameter name="wsdlPortType" value="userlogs"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="schemaQualified" value="http://lab3"/>
+  <ns1:parameter name="wsdlServicePort" value="userlogs"/>
+  <ns1:parameter name="className" value="lab3.userlogs"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://lab3"/>
+  <ns1:parameter name="wsdlServiceElement" value="userlogsService"/>
+ </ns1:service>
+ <ns1:service name="AdminService" provider="java:MSG">
+  <ns1:parameter name="allowedMethods" value="AdminService"/>
+  <ns1:parameter name="enableRemoteAdmin" value="false"/>
+  <ns1:parameter name="className" value="org.apache.axis.utils.Admin"/>
+  <ns1:namespace>http://xml.apache.org/axis/wsdd/</ns1:namespace>
+ </ns1:service>
+ <ns1:service name="Version" provider="java:RPC">
+  <ns1:parameter name="allowedMethods" value="getVersion"/>
+  <ns1:parameter name="className" value="org.apache.axis.Version"/>
+ </ns1:service>
+ <ns1:service name="calfunction" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="cal" qname="ns2:cal" returnQName="ns2:calReturn" returnType="xsd:string" soapAction="" xmlns:ns2="http://lab3" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns2:exp" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="cal"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="calfunction"/>
+  <ns1:parameter name="className" value="lab3.calfunction"/>
+  <ns1:parameter name="wsdlServicePort" value="calfunction"/>
+  <ns1:parameter name="schemaQualified" value="http://lab3"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://lab3"/>
+  <ns1:parameter name="wsdlServiceElement" value="calfunctionService"/>
+ </ns1:service>
+ <ns1:service name="additem" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="additems" qname="ns3:additems" returnQName="ns3:additemsReturn" returnType="xsd:boolean" soapAction="" xmlns:ns3="http://lab3" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns3:user" type="xsd:string"/>
+   <ns1:parameter qname="ns3:title" type="xsd:string"/>
+   <ns1:parameter qname="ns3:itemdesc" type="xsd:string"/>
+   <ns1:parameter qname="ns3:sellerdetails" type="xsd:string"/>
+   <ns1:parameter qname="ns3:itemprice" type="xsd:int"/>
+   <ns1:parameter qname="ns3:quantity" type="xsd:int"/>
+   <ns1:parameter qname="ns3:bidding" type="xsd:int"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="additems"/>
+  <ns1:parameter name="wsdlPortType" value="additem"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="schemaQualified" value="http://lab3"/>
+  <ns1:parameter name="wsdlServicePort" value="additem"/>
+  <ns1:parameter name="className" value="lab3.additem"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://lab3"/>
+  <ns1:parameter name="wsdlServiceElement" value="additemService"/>
+ </ns1:service>
+ <ns1:service name="shoppingcart" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="deletecart" qname="ns4:deletecart" returnQName="ns4:deletecartReturn" returnType="xsd:boolean" soapAction="" xmlns:ns4="http://lab3" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns4:user" type="xsd:string"/>
+   <ns1:parameter qname="ns4:pid" type="xsd:int"/>
+  </ns1:operation>
+  <ns1:operation name="listshoppingcart" qname="ns5:listshoppingcart" returnQName="ns5:listshoppingcartReturn" returnType="xsd:string" soapAction="" xmlns:ns5="http://lab3" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns5:user" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="sendMultiRefs" value="false"/>
+  <ns1:parameter name="wsdlServicePort" value="shoppingcart"/>
+  <ns1:parameter name="schemaQualified" value="http://lab3"/>
+  <ns1:parameter name="className" value="lab3.shoppingcart"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="allowedMethods" value="listshoppingcart deletecart"/>
+  <ns1:parameter name="wsdlPortType" value="shoppingcart"/>
+  <ns1:parameter name="wsdlServiceElement" value="shoppingcartService"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://lab3"/>
+  <ns1:parameter name="sendXsiTypes" value="false"/>
+ </ns1:service>
+ <ns1:service name="displayinindex" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="displayindex" qname="ns6:displayindex" returnQName="ns6:displayindexReturn" returnType="xsd:string" soapAction="" xmlns:ns6="http://lab3" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:parameter name="allowedMethods" value="displayindex"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="displayinindex"/>
+  <ns1:parameter name="className" value="lab3.displayinindex"/>
+  <ns1:parameter name="wsdlServicePort" value="displayinindex"/>
+  <ns1:parameter name="schemaQualified" value="http://lab3"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://lab3"/>
+  <ns1:parameter name="wsdlServiceElement" value="displayinindexService"/>
+ </ns1:service>
+ <ns1:service name="cardvalidation" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="cardvalid" qname="ns7:cardvalid" returnQName="ns7:cardvalidReturn" returnType="xsd:boolean" soapAction="" xmlns:ns7="http://lab3" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns7:user" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="cardvalid"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="cardvalidation"/>
+  <ns1:parameter name="className" value="lab3.cardvalidation"/>
+  <ns1:parameter name="wsdlServicePort" value="cardvalidation"/>
+  <ns1:parameter name="schemaQualified" value="http://lab3"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://lab3"/>
+  <ns1:parameter name="wsdlServiceElement" value="cardvalidationService"/>
+ </ns1:service>
+ <ns1:service name="registeruser" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="newuser" qname="ns8:newuser" returnQName="ns8:newuserReturn" returnType="xsd:boolean" soapAction="" xmlns:ns8="http://lab3" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns8:user" type="xsd:string"/>
+   <ns1:parameter qname="ns8:password" type="xsd:string"/>
+   <ns1:parameter qname="ns8:firstname" type="xsd:string"/>
+   <ns1:parameter qname="ns8:lastname" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="sendMultiRefs" value="false"/>
+  <ns1:parameter name="wsdlServicePort" value="registeruser"/>
+  <ns1:parameter name="schemaQualified" value="http://lab3"/>
+  <ns1:parameter name="className" value="lab3.registeruser"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="allowedMethods" value="newuser"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://lab3"/>
+  <ns1:parameter name="wsdlServiceElement" value="registeruserService"/>
+  <ns1:parameter name="wsdlPortType" value="registeruser"/>
+  <ns1:parameter name="sendXsiTypes" value="false"/>
+ </ns1:service>
+ <ns1:service name="dbConnection" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="config" qname="ns9:config" returnQName="ns9:configReturn" returnType="xsd:anyType" soapAction="" xmlns:ns9="http://connections" xmlns:xsd="http://www.w3.org/2001/XMLSchema"/>
+  <ns1:parameter name="allowedMethods" value="config"/>
+  <ns1:parameter name="wsdlPortType" value="dbConnection"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="schemaQualified" value="http://connections"/>
+  <ns1:parameter name="wsdlServicePort" value="dbConnection"/>
+  <ns1:parameter name="className" value="connections.dbConnection"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://connections"/>
+  <ns1:parameter name="wsdlServiceElement" value="dbConnectionService"/>
+ </ns1:service>
+ <ns1:service name="ppfunctionality" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="addtobid" qname="ns10:addtobid" returnQName="ns10:addtobidReturn" returnType="xsd:boolean" soapAction="" xmlns:ns10="http://lab3" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns10:user" type="xsd:string"/>
+   <ns1:parameter qname="ns10:pid" type="xsd:int"/>
+   <ns1:parameter qname="ns10:quantity" type="xsd:int"/>
+   <ns1:parameter qname="ns10:bidamt" type="xsd:int"/>
+  </ns1:operation>
+  <ns1:operation name="addtocart" qname="ns11:addtocart" returnQName="ns11:addtocartReturn" returnType="xsd:boolean" soapAction="" xmlns:ns11="http://lab3" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns11:user" type="xsd:string"/>
+   <ns1:parameter qname="ns11:title" type="xsd:string"/>
+   <ns1:parameter qname="ns11:itemdesc" type="xsd:string"/>
+   <ns1:parameter qname="ns11:pid" type="xsd:int"/>
+   <ns1:parameter qname="ns11:rate" type="xsd:int"/>
+   <ns1:parameter qname="ns11:quantity" type="xsd:int"/>
+  </ns1:operation>
+  <ns1:operation name="getcart" qname="ns12:getcart" returnQName="ns12:getcartReturn" returnType="xsd:string" soapAction="" xmlns:ns12="http://lab3" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns12:pid" type="xsd:int"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="addtocart getcart addtobid"/>
+  <ns1:parameter name="wsdlPortType" value="ppfunctionality"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="schemaQualified" value="http://lab3"/>
+  <ns1:parameter name="wsdlServicePort" value="ppfunctionality"/>
+  <ns1:parameter name="className" value="lab3.ppfunctionality"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://lab3"/>
+  <ns1:parameter name="wsdlServiceElement" value="ppfunctionalityService"/>
+ </ns1:service>
+ <ns1:service name="checklogin" provider="java:RPC" style="wrapped" use="literal">
+  <ns1:operation name="validlogin" qname="ns13:validlogin" returnQName="ns13:validloginReturn" returnType="xsd:boolean" soapAction="" xmlns:ns13="http://lab3" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+   <ns1:parameter qname="ns13:user" type="xsd:string"/>
+   <ns1:parameter qname="ns13:password" type="xsd:string"/>
+  </ns1:operation>
+  <ns1:parameter name="allowedMethods" value="validlogin"/>
+  <ns1:parameter name="typeMappingVersion" value="1.2"/>
+  <ns1:parameter name="wsdlPortType" value="checklogin"/>
+  <ns1:parameter name="className" value="lab3.checklogin"/>
+  <ns1:parameter name="wsdlServicePort" value="checklogin"/>
+  <ns1:parameter name="schemaQualified" value="http://lab3"/>
+  <ns1:parameter name="wsdlTargetNamespace" value="http://lab3"/>
+  <ns1:parameter name="wsdlServiceElement" value="checkloginService"/>
+ </ns1:service>
+ <ns1:transport name="http">
+  <ns1:requestFlow>
+   <ns1:handler type="URLMapper"/>
+  </ns1:requestFlow>
+  <ns1:parameter name="qs.list" value="org.apache.axis.transport.http.QSListHandler"/>
+  <ns1:parameter name="qs.method" value="org.apache.axis.transport.http.QSMethodHandler"/>
+  <ns1:parameter name="qs.wsdl" value="org.apache.axis.transport.http.QSWSDLHandler"/>
+ </ns1:transport>
+</ns1:deployment>

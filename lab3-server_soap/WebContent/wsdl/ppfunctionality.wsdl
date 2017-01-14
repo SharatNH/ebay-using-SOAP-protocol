@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://lab3" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://lab3" xmlns:intf="http://lab3" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://lab3" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="addtobid">
+    <complexType>
+     <sequence>
+      <element name="user" type="xsd:string"/>
+      <element name="pid" type="xsd:int"/>
+      <element name="quantity" type="xsd:int"/>
+      <element name="bidamt" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addtobidResponse">
+    <complexType>
+     <sequence>
+      <element name="addtobidReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addtocart">
+    <complexType>
+     <sequence>
+      <element name="user" type="xsd:string"/>
+      <element name="title" type="xsd:string"/>
+      <element name="itemdesc" type="xsd:string"/>
+      <element name="pid" type="xsd:int"/>
+      <element name="rate" type="xsd:int"/>
+      <element name="quantity" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="addtocartResponse">
+    <complexType>
+     <sequence>
+      <element name="addtocartReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getcart">
+    <complexType>
+     <sequence>
+      <element name="pid" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="getcartResponse">
+    <complexType>
+     <sequence>
+      <element name="getcartReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="getcartRequest">
+
+      <wsdl:part element="impl:getcart" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addtocartRequest">
+
+      <wsdl:part element="impl:addtocart" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addtocartResponse">
+
+      <wsdl:part element="impl:addtocartResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addtobidRequest">
+
+      <wsdl:part element="impl:addtobid" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="addtobidResponse">
+
+      <wsdl:part element="impl:addtobidResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="getcartResponse">
+
+      <wsdl:part element="impl:getcartResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="ppfunctionality">
+
+      <wsdl:operation name="addtobid">
+
+         <wsdl:input message="impl:addtobidRequest" name="addtobidRequest"/>
+
+         <wsdl:output message="impl:addtobidResponse" name="addtobidResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addtocart">
+
+         <wsdl:input message="impl:addtocartRequest" name="addtocartRequest"/>
+
+         <wsdl:output message="impl:addtocartResponse" name="addtocartResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getcart">
+
+         <wsdl:input message="impl:getcartRequest" name="getcartRequest"/>
+
+         <wsdl:output message="impl:getcartResponse" name="getcartResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ppfunctionalitySoapBinding" type="impl:ppfunctionality">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="addtobid">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addtobidRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addtobidResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="addtocart">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="addtocartRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="addtocartResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="getcart">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="getcartRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="getcartResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ppfunctionalityService">
+
+      <wsdl:port binding="impl:ppfunctionalitySoapBinding" name="ppfunctionality">
+
+         <wsdlsoap:address location="http://localhost:8080/lab3/services/ppfunctionality"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

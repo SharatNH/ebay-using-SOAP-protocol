@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://lab3" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://lab3" xmlns:intf="http://lab3" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://lab3" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="userlog">
+    <complexType>
+     <sequence>
+      <element name="user" type="xsd:string"/>
+      <element name="pid" type="xsd:double"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="userlogResponse">
+    <complexType>
+     <sequence>
+      <element name="userlogReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="userlogRequest">
+
+      <wsdl:part element="impl:userlog" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="userlogResponse">
+
+      <wsdl:part element="impl:userlogResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="userlogs">
+
+      <wsdl:operation name="userlog">
+
+         <wsdl:input message="impl:userlogRequest" name="userlogRequest"/>
+
+         <wsdl:output message="impl:userlogResponse" name="userlogResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="userlogsSoapBinding" type="impl:userlogs">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="userlog">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="userlogRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="userlogResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="userlogsService">
+
+      <wsdl:port binding="impl:userlogsSoapBinding" name="userlogs">
+
+         <wsdlsoap:address location="http://localhost:8080/lab3/services/userlogs"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

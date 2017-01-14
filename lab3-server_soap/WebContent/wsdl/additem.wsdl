@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://lab3" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://lab3" xmlns:intf="http://lab3" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://lab3" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="additems">
+    <complexType>
+     <sequence>
+      <element name="user" type="xsd:string"/>
+      <element name="title" type="xsd:string"/>
+      <element name="itemdesc" type="xsd:string"/>
+      <element name="sellerdetails" type="xsd:string"/>
+      <element name="itemprice" type="xsd:int"/>
+      <element name="quantity" type="xsd:int"/>
+      <element name="bidding" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="additemsResponse">
+    <complexType>
+     <sequence>
+      <element name="additemsReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="additemsResponse">
+
+      <wsdl:part element="impl:additemsResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="additemsRequest">
+
+      <wsdl:part element="impl:additems" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="additem">
+
+      <wsdl:operation name="additems">
+
+         <wsdl:input message="impl:additemsRequest" name="additemsRequest"/>
+
+         <wsdl:output message="impl:additemsResponse" name="additemsResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="additemSoapBinding" type="impl:additem">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="additems">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="additemsRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="additemsResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="additemService">
+
+      <wsdl:port binding="impl:additemSoapBinding" name="additem">
+
+         <wsdlsoap:address location="http://localhost:8080/lab3/services/additem"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

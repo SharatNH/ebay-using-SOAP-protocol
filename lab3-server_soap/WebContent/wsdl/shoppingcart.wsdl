@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://lab3" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://lab3" xmlns:intf="http://lab3" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://lab3" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="deletecart">
+    <complexType>
+     <sequence>
+      <element name="user" type="xsd:string"/>
+      <element name="pid" type="xsd:int"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="deletecartResponse">
+    <complexType>
+     <sequence>
+      <element name="deletecartReturn" type="xsd:boolean"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="listshoppingcart">
+    <complexType>
+     <sequence>
+      <element name="user" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="listshoppingcartResponse">
+    <complexType>
+     <sequence>
+      <element name="listshoppingcartReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="deletecartResponse">
+
+      <wsdl:part element="impl:deletecartResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="listshoppingcartResponse">
+
+      <wsdl:part element="impl:listshoppingcartResponse" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="listshoppingcartRequest">
+
+      <wsdl:part element="impl:listshoppingcart" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:message name="deletecartRequest">
+
+      <wsdl:part element="impl:deletecart" name="parameters"/>
+
+   </wsdl:message>
+
+   <wsdl:portType name="shoppingcart">
+
+      <wsdl:operation name="deletecart">
+
+         <wsdl:input message="impl:deletecartRequest" name="deletecartRequest"/>
+
+         <wsdl:output message="impl:deletecartResponse" name="deletecartResponse"/>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="listshoppingcart">
+
+         <wsdl:input message="impl:listshoppingcartRequest" name="listshoppingcartRequest"/>
+
+         <wsdl:output message="impl:listshoppingcartResponse" name="listshoppingcartResponse"/>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="shoppingcartSoapBinding" type="impl:shoppingcart">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="deletecart">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="deletecartRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="deletecartResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="listshoppingcart">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="listshoppingcartRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="listshoppingcartResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="shoppingcartService">
+
+      <wsdl:port binding="impl:shoppingcartSoapBinding" name="shoppingcart">
+
+         <wsdlsoap:address location="http://localhost:8080/lab3/services/shoppingcart"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

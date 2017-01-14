@@ -1,0 +1,30 @@
+<!-- Use this file to deploy some handlers/chains and services      -->
+<!-- Two ways to do this:                                           -->
+<!--   java org.apache.axis.client.AdminClient deploy.wsdd          -->
+<!--      after the axis server is running                          -->
+<!-- or                                                             -->
+<!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   -->
+<!--      from the same directory that the Axis engine runs         -->
+
+<deployment
+    xmlns="http://xml.apache.org/axis/wsdd/"
+    xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from userlogsService WSDL service -->
+
+  <service name="userlogs" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://lab3"/>
+      <parameter name="wsdlServiceElement" value="userlogsService"/>
+      <parameter name="schemaQualified" value="http://lab3"/>
+      <parameter name="wsdlServicePort" value="userlogs"/>
+      <parameter name="className" value="lab3.UserlogsSoapBindingImpl"/>
+      <parameter name="wsdlPortType" value="userlogs"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation name="userlog" qname="operNS:userlog" xmlns:operNS="http://lab3" returnQName="retNS:userlogReturn" xmlns:retNS="http://lab3" returnType="rtns:boolean" xmlns:rtns="http://www.w3.org/2001/XMLSchema" soapAction="" >
+        <parameter qname="pns:user" xmlns:pns="http://lab3" type="tns:string" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+        <parameter qname="pns:pid" xmlns:pns="http://lab3" type="tns:double" xmlns:tns="http://www.w3.org/2001/XMLSchema"/>
+      </operation>
+      <parameter name="allowedMethods" value="userlog"/>
+
+  </service>
+</deployment>
